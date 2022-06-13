@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  font-family: 'Urbanist', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #FFF;
+  background: var(--color-bg);
+}
+
+* {
+  box-sizing: border-box;
+}

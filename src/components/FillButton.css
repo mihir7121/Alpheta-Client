@@ -1,0 +1,33 @@
+.fill-btn {
+  font-size: 16px;
+  font-weight: 600;
+  background-image: var(--color-gradient);
+  background-size: 200% 100%;
+  height: 45px;
+  display: inline-block;
+  line-height: 45px;
+  border-radius: 5px;
+  padding: 0 35px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s linear;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.btn-disabled .fill-btn {
+  background-position: 0% 0% !important;
+  opacity: 0.25;
+  cursor: default;
+}
+
+.fill-btn:hover {
+  background-position: 100% 100%;
+}
+
+.fill-btn.fill-btn-small {
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 16px;
+}
