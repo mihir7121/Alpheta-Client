@@ -1,7 +1,7 @@
 export const isDebug = false
 
 export const API_ROOT_DEBUG = 'http://localhost:17655'
-export const API_ROOT_PROD = 'http://alpheta-server.herokuapp.com'
+export const API_ROOT_PROD = 'http://alpheta.herokuapp.com/'
 
 export const discordLink = 'https://discord.com'
 export const instagramLink = 'https://instagram.com'
