@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './routes/home/Home';
 import Explore from './routes/explore/Explore';
 import Leaderboard from './routes/leaderboard/Leaderboard';
@@ -13,8 +13,23 @@ import Feedback from './routes/feedback/Feedback';
 import ConnectPromptModal from './components/ConnectPromptModal';
 import { ModalProvider } from './contexts/ModalContext';
 import ScrollToTop from './components/ScrollToTop';
+import { useEffect } from 'react';
+import ReactGA from "react-ga";
+
+function usePageViews(){
+  let location = useLocation();
+  useEffect(() => {
+    if(!window.GA_INITIALIZED){
+      ReactGA.initialize("G-CK1D0X7L2S");
+      window.GA_INITIALIZED = true;
+    }
+    ReactGA.set({page: location.pathname})
+    ReactGA.pageview(location.pathname);
+  }, [location]);
+}
 
 function App() {
+  // usePageViews();
   return (
     <UserProvider>
       <AuthProvider>

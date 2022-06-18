@@ -6,6 +6,17 @@ import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
 import './Feedback.css'
 
+// async function myComponent() {
+//   const navigate = useNavigate()
+
+//   useEffect(() => {
+//     setTimeout(() => {
+//       navigate('/')
+//     }, 2000)
+//   }, [])
+//   return;
+// }
+
 function Feedback() {
   const [email, setEmail] = useState('')
   const [feedback, setFeedback] = useState('')
@@ -42,7 +53,7 @@ function Feedback() {
       <Navbar></Navbar>
       <div className='page-feedback container'>
         {
-          !sentFeedback ? 
+          !sentFeedback ?
             <>
               <h1>Submit Feedback</h1>
 
@@ -56,11 +67,11 @@ function Feedback() {
 
                     <label htmlFor='feedback_text'>Feedback</label>
                     <textarea type='text' id='feedback_text'
-                      value={feedback}  
+                      value={feedback}
                       onChange={(event) => setFeedback(event.target.value)}
                       placeholder='Your feedback here...' />
 
-                    <div className={isDisabled() ? 'btn-disabled' : ''} style={{marginLeft: 'auto'}}>
+                    <div className={isDisabled() ? 'btn-disabled' : ''} style={{ marginLeft: 'auto' }}>
                       <FillButton onClick={submitFeedback}>Submit</FillButton>
                     </div>
                   </form>
@@ -69,15 +80,18 @@ function Feedback() {
                 <div className='feedback-right'>
                   <h2>Why your feedback matters</h2>
                   <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tincidunt dolor vitae velit vehicula, imperdiet finibus arcu finibus. Sed molestie malesuada turpis et aliquet. Donec bibendum purus eu ipsum facilisis tempus. Phasellus ullamcorper faucibus diam id auctor. Fusce purus nibh, aliquam at posuere in, tempus quis turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed scelerisque dignissim tortor vel interdum. Vivamus laoreet enim molestie libero elementum elementum. Sed venenatis, ligula eget viverra interdum, nisi sem lacinia elit, id finibus lacus lacus nec mauris. Sed aliquam dapibus mauris, a dictum purus elementum vitae. Aliquam hendrerit, nisl eu pellentesque interdum, lacus felis ultricies massa, non imperdiet elit tellus at ex. Morbi in euismod sem, quis tristique elit. Fusce feugiat enim sit amet sem porttitor, a tincidunt erat elementum. Maecenas tempor augue vitae arcu ultricies tempor. Mauris sit amet porta massa.
+                    We are committed to enhancing the Alpheta experience and would like to hear your views about the platform and our concept. We would like to know what we do well, what we should continue, and what we should improve on. Your feedback, positive or negative, is very valuable to us.<br></br><br></br> It will help us -<br></br>
+                    1) Take important decisions regarding the platform<br></br>
+                    2) Improve the experience for our users and make the required changes.<br></br>
+                    3) Give our community a chance to voice their opinions and help us take Alpheta in the direction our community wants
                   </p>
                 </div>
               </div>
             </>
-          : 
-          <>
-            <h1>Thank you for your feedback</h1>
-          </>
+            :
+            <>
+              <h1>Thank you for your feedback</h1>
+            </>
         }
       </div>
 

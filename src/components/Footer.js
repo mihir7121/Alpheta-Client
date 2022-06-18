@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { discordLink, emailAddress, facebookLink, instagramLink, twitterLink } from '../config';
+import { discordLink, emailAddress, linkedinLink, instagramLink, twitterLink } from '../config';
 import './Footer.css'
 
 function Footer() {
@@ -38,9 +38,9 @@ function Footer() {
             <i className='fab fa-instagram'></i>
             Instagram
           </a>
-          <a href={facebookLink}>
-            <i className='fab fa-facebook'></i>
-            Facebook</a>
+          <a href={linkedinLink}>
+            <i className='fab fa-linkedin-in'></i>
+            LinkedIn</a>
           <a href={twitterLink}>
             <i className='fab fa-twitter'></i>
             Twitter

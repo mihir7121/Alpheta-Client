@@ -58,7 +58,7 @@ function Home() {
           <br/>
           Alpheta is the world's first NFT rating platform showcasing ratings and reviews given to NFT Projects by Alpheta Users and Experts. 
           <br /><br/>
-          We work on a <span>Vote to Earn</span> mechanism, where our top voters get to be the Alphas and earn Sol + gain access to several rewards.
+          We work on a <span>Vote to Earn</span> mechanism, where our top voters get to be the Alphas and earn ETH + gain access to several rewards.
         </p>
 
         <Link to='/explore'>

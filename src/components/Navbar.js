@@ -45,6 +45,7 @@ function Navbar({isStatic}) {
       <NavItem link="/explore" title='Explore'></NavItem>
       <NavItem link="/leaderboard" title='Leaderboard'></NavItem>
       <NavItem link="/faq" title='FAQs'></NavItem>
+      <NavItem link="/feedback" title='Feedback'></NavItem>
 
       {
         !auth.state.isAuthenticated ? 
