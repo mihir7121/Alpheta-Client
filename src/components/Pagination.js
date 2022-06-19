@@ -14,7 +14,7 @@ function Pagination({pageCount = 5, currentPage = 1, loadPage}) {
       {
         Array.from(Array(pageCount)).map((_, i) => {
           return (
-            <div onClick={() => loadPage(i + 1)} className={(currentPage === i + 1) ? 'page-selected' : ''}>
+            <div key={i} onClick={() => loadPage(i + 1)} className={(currentPage === i + 1) ? 'page-selected' : ''}>
               {i + 1}
             </div>
           )

@@ -29,6 +29,12 @@ function NFTCard({item}) {
     await userContext.favourite(item.slug, liked)
   }
 
+  const onBuyClick = async (event) => {
+    event.stopPropagation()
+    event.preventDefault();
+    window.open(event.target.href)
+  }
+
   return (
     <Link to={`/view/${item.slug}`}  className='nft-card'>
       <div className='nft-image'>
@@ -57,7 +63,7 @@ function NFTCard({item}) {
         </span>
 
         <div className='nft-card-links'>
-          <FillButton small={true} href={`https://opensea.io/collection/${item.slug}`}>
+          <FillButton small={true} onClick={onBuyClick} href={`https://opensea.io/collection/${item.slug}`}>
             Buy Now
           </FillButton>
 
