@@ -9,7 +9,7 @@ function FAQ() {
     {
       title: 'What is Alpheta?',
       content: `Alpheta is the world's first NFT rating platform that showcases people's and experts' opinion on NFT Projects. Basically, it is like the IMDb rating, but for NFTs. The NFT world is booming, new projects are coming up everyday. However, there are very less sources to do proper research about individual projects, which leads to people losing their money in rugs or hype. With Alpheta, we aim to bring you a platform where you can do proper research about any NFT Project, get market validation and opinion through the Alpha Score, and find profitable NFTs within minutes. `,
-    }, 
+    },
     {
       title: 'How to get started as an Alpheta User and Voter?',
       content: 'To start with, you need to connect your wallet. Currently we have MetaMask and WalletConnect as options currently and are working on bringing more options to you. \nTo connect with MetaMask, you need to have the chrome extension or the app.\nConnecting your wallet automatically makes you an Alpheta User, and all you have to do now is go through the projects listed and start rating them and writing reviews for them. This helps you showcase your opinion on NFT Projects. Giving quality votes can help you become a Top Voter, called the Alphas, which will give you access to certain rewards.',
@@ -17,6 +17,10 @@ function FAQ() {
     {
       title: 'Why do I need a wallet to rate NFTs?',
       content: 'This is done to avoid spams and manipulation of the score with fake bots. We want our Alpha Score to be highly credible and accurate.',
+    },
+    {
+      title: 'What are the factors you should consider before rating a project?',
+      content: 'Before rating a project, consider the following factors -\n\n1) Artwork and the Artist \n\n2) Utility and Roadmap - what does the future look like for this project?\n\n3) Team - is it verified?\n\n4) Community - size and engagement\n\n5) Floor Price Changes\n\n6) Trade Volume\n\n7) Market Cap\n\n8) Credibility - who are the people backing this project?'
     }, 
     {
       title: 'How can I use Alpheta to find profitable NFT Projects?',
