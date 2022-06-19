@@ -14,10 +14,14 @@ import ProfileFavourites from './tabs/ProfileFavourites'
 import { useUser } from '../../contexts/UserContext'
 import CallToAction from '../../components/CallToAction'
 import ProfileActivity from './tabs/ProfileActivity'
+import { useModal } from '../../contexts/ModalContext'
+import EditProfileModal from '../../components/EditProfileModal'
 
 function Profile() {
   const params = useParams()
   const auth = useAuth()
+  const modal = useModal()
+
   const [selectedTab, setSelectedTab] = useState('activity')
   const [userData, setUserData] = useState(null)
 
@@ -68,6 +72,7 @@ function Profile() {
   return (
     <div>
       <Navbar isStatic={true}></Navbar>
+      <EditProfileModal></EditProfileModal>
       <div className='page-profile'>
         {
           userData ?
@@ -87,7 +92,7 @@ function Profile() {
                   {userData.username || 'Unnamed'}
                   {
                     isOwn ?
-                      <span className='profile-edit'>
+                      <span className='profile-edit' onClick={modal.showEditProfileModal}>
                         <i className='fas fa-edit'></i>
                       </span>
                     : null

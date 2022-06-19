@@ -90,7 +90,10 @@ function LeaderCard({rank, item}) {
     <Link to={'/profile/' + item.address} className='leader-card'>
       <img src={`https://avatars.dicebear.com/api/identicon/${item.address}.svg`} />
       <div>
-        {shortenAddress(item.address)}
+        {
+          item.username || 'Unnamed'
+        }
+        <span>{shortenAddress(item.address)}</span>
         <span>{item.review_count} reviews</span>
       </div>
       <span className='leader-rank'>{rank}</span>

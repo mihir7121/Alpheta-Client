@@ -13,6 +13,7 @@
   transition: all .3s linear;
   color: #FFF;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-disabled .fill-btn {

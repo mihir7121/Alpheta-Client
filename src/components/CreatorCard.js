@@ -18,7 +18,7 @@ function CreatorCard({item}) {
     event.preventDefault();
 
     if (!authContext.state.isAuthenticated) {
-      modal.showModal()
+      modal.showConnectPromptModal()
       return
     }
 

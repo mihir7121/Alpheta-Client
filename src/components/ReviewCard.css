@@ -46,10 +46,12 @@
 .review-score {
   display: flex;
   margin-top: 4px;
+  align-items: center;
+  font-weight: 600;
 }
 
 .review-score img {
   display: block;
   width: 16px;
-  margin-right: 4px;
+  margin-right: 8px;
 }

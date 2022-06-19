@@ -10,14 +10,11 @@ function ReviewCard({item}) {
 
       <div>
         <Link to={'/profile/' + item.user.address} className='review-author'>
-          {shortenAddress(item.user.address)}
+          {item.user.username || shortenAddress(item.user.address)}
         </Link>
         <div className='review-score' alt={'Rated ' + item.score}>
-          {
-            Array.from(Array(Math.max(0, Math.floor(item.score)))).map((_, index) => {
-              return <img key={index} src={wolfImage} alt='' />
-            })
-          }
+          <img src={wolfImage} alt='' />
+          {item.score}
         </div>
 
         {

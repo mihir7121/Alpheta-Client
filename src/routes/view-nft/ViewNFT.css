@@ -80,13 +80,18 @@
   border-right: none;
 }
 
+.nft-links {
+  display: flex;
+  align-items: center;
+}
+
 .nft-info-row {
   margin: 16px 0px;
   display: flex;
   align-items: center;
 }
 
-.view-nft-fave {
+.view-nft-fave, .nft-action {
   background: var(--color-primary);
   border-radius: 8px;
   padding: 12px;
@@ -96,18 +101,24 @@
   height: fit-content;
   display: flex;
   align-items: center;
+  color: #FFF;
+  text-decoration: none;
 }
 
-.view-nft-fave:hover {
+.nft-action {
+  margin-left: 16px;
+}
+
+.view-nft-fave:hover, .nft-action:hover {
   background: var(--color-accent);
 }
 
-.view-nft-fave img {
+.view-nft-fave img, .nft-action i {
   width: 18px;
   transition: all 0.25s;
 }
 
-.view-nft-fave:active img {
+.view-nft-fave:active img, .nft-action:active i {
   transform: scale(0.8);
 }
 

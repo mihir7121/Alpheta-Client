@@ -5,23 +5,35 @@ import Footer from '../../components/Footer';
 import Loading from '../../components/Loading';
 import Navbar from '../../components/Navbar';
 import NFTCard from '../../components/NFTCard';
+import Pagination from '../../components/Pagination';
 import './Explore.css'
 
 function Explore() {
   const [exploreData, setExploreData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
+  const [searchText, setSearchText] = useState('');
 
-  const loadExplore = async () => {
-    const data = await getExplore()
+  const loadExplore = async (page = currentPage) => {
+    if (searchText && searchText.trim().length < 3) return
+    setCurrentPage(page)
+    setExploreData(null)
+
+    const data = await getExplore(page, 20, searchText.trim())
     if (data.success) {
       setExploreData(data.projects)
+      setPageCount(data.page_count)
     } else {
       alert(data.message)
     }
   } 
 
   useEffect(() => {
-    loadExplore()
-  }, [])
+    const timeout = setTimeout(loadExplore, 1000)
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [searchText])
 
   return (
     <div>
@@ -29,16 +41,33 @@ function Explore() {
       <div className='page-explore container'>
         <h1>Explore Artworks</h1>
 
+        <SearchFilterRow 
+          searchText={searchText}
+          setSearchText={setSearchText}
+        />
+
         {
           exploreData ? 
           <div>
-            <SearchFilterRow></SearchFilterRow>
-
             <div className='nft-card-grid'>
               {exploreData.map((item, index) => {
                 return <NFTCard key={item.slug + index} item={item}></NFTCard>
               })}
             </div>
+
+            {
+              exploreData.length === 0 ?
+                <div className='empty-placeholder'>
+                  No results found
+                </div>
+              : null
+            }
+
+            <Pagination
+              currentPage={currentPage} 
+              pageCount={pageCount}
+              loadPage={loadExplore}
+            ></Pagination>
           </div>
           : <Loading></Loading>
         }
@@ -50,11 +79,15 @@ function Explore() {
   )
 }
 
-function SearchFilterRow() {
+function SearchFilterRow({searchText, setSearchText}) {
   return (
     <div className='esf-row'>
       <div className='esf-search'>
-        <input disabled={true} placeholder='Search NFTs'></input>
+        <input 
+          placeholder='Search NFTs'
+          value={searchText} 
+          onChange={(event) => setSearchText(event.target.value)}
+        ></input>
       </div>
       <div className='esf-filter'>
         <div>Sort By</div>

@@ -33,7 +33,7 @@ function ViewNFT() {
     event.preventDefault();
 
     if (!auth.state.isAuthenticated) {
-      modal.showModal()
+      modal.showConnectPromptModal()
       return
     }
 
@@ -128,6 +128,36 @@ function ViewNFT() {
                 </div>
 
                 <span style={{marginTop: '0px', marginBottom: '16px'}} className='divider'></span>
+
+                <div className='nft-links'>
+                  <FillButton href={`https://opensea.io/collection/${itemData.slug}`}>
+                    Buy Now
+                  </FillButton>
+
+                  {
+                    itemData.discord ?
+                      <a 
+                        className='nft-action' 
+                        style={{'--color-accent': '#5465de'}} 
+                        href={itemData.discord}>
+
+                        <i className='fab fa-discord'></i>
+                      </a>
+                    : null
+                  }
+
+                  {
+                    itemData.twitter ?
+                      <a 
+                        className='nft-action' 
+                        style={{'--color-accent': '#1c99e6'}} 
+                        href={'https://twitter.com/' + itemData.twitter}>
+
+                        <i className='fab fa-twitter'></i>
+                      </a>
+                    : null
+                  }
+                </div>
               </div>
             </div>
 
@@ -172,7 +202,7 @@ function WriteReview({itemData, afterReview, modal}) {
 
   const checkAuth = () => {
     if (!auth.state.isAuthenticated) {
-      modal.showModal()
+      modal.showConnectPromptModal()
       return true
     }
     return false

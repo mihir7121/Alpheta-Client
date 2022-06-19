@@ -15,6 +15,7 @@ import { ModalProvider } from './contexts/ModalContext';
 import ScrollToTop from './components/ScrollToTop';
 import { useEffect } from 'react';
 import ReactGA from "react-ga";
+import EditProfileModal from './components/EditProfileModal';
 
 function usePageViews(){
   let location = useLocation();

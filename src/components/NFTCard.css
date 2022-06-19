@@ -67,6 +67,7 @@
   display: flex;
   flex-direction: column;
   padding: 16px 10px 10px;
+  flex-grow: 1;
 }
 
 .nft-content p {
@@ -114,6 +115,7 @@
   font-weight: 600;
   color: #FFF;
   margin-bottom: 5px;
+  margin-top: auto;
 }
 
 .nft-score {
@@ -127,4 +129,41 @@
 .nft-score img {
   height: 20px;
   margin-left: 8px;
+}
+
+.nft-card-links {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.nft-card-action {
+  background: var(--color-bg);
+  border-radius: 8px;
+  padding: 12px;
+  transition: all 0.25s;
+  margin-left: auto;
+  cursor: pointer;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.nft-card-action {
+  margin-left: 16px
+}
+
+.nft-card-action:hover {
+  background: var(--color-accent);
+}
+
+.nft-card-action i {
+  width: 18px;
+  transition: all 0.25s;
+}
+
+.nft-card-action:active i {
+  transform: scale(0.8);
 }

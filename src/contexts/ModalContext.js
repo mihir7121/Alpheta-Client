@@ -3,17 +3,32 @@ import {createContext, useContext, useEffect, useReducer, useState} from 'react'
 const ModalContext = createContext();
 
 function ModalProvider({children}) {
-  const [modalVisible, setModalVisible] = useState(false)
+  const [connectPromptModalVisible, setConnectPromptModalVisible] = useState(false)
+  const [editProfileModalVisible, setEditProfileModalVisible] = useState(false)
 
-  const showModal = () => {
-    setModalVisible(true)
+  const showConnectPromptModal = () => {
+    setConnectPromptModalVisible(true)
   }
   
-  const hideModal = () => {
-    setModalVisible(false)
+  const hideConnectPromptModal = () => {
+    setConnectPromptModalVisible(false)
   }
 
-  const value = {modalVisible, showModal, hideModal}
+  const showEditProfileModal = () => {
+    setEditProfileModalVisible(true)
+  }
+  
+  const hideEditProfileModal = () => {
+    setEditProfileModalVisible(false)
+  }
+  const value = {
+    connectPromptModalVisible, 
+    showConnectPromptModal, 
+    hideConnectPromptModal,
+    editProfileModalVisible,
+    showEditProfileModal, 
+    hideEditProfileModal,
+  }
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
 }
 

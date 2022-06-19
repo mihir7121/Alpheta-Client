@@ -8,7 +8,7 @@ function ConnectPromptModal() {
   const modal = useModal()
 
   if (auth.state.isAuthenticated) return;
-  if (!modal.modalVisible) return;
+  if (!modal.connectPromptModalVisible) return;
 
   return (
     <div className='cpm-backdrop'>
@@ -17,7 +17,7 @@ function ConnectPromptModal() {
         <p>You need to connect your wallet to perform this action.</p>
 
         <FillButton onClick={auth.connectWallet}>Connect Now</FillButton>
-        <span onClick={modal.hideModal} className='not-now'>&lt; Not now</span>
+        <span onClick={modal.hideConnectPromptModal} className='not-now'>&lt; Not now</span>
       </div>
     </div>
   )
