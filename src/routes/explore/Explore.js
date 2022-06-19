@@ -89,7 +89,7 @@ function SearchFilterRow({searchText, setSearchText}) {
           onChange={(event) => setSearchText(event.target.value)}
         ></input>
       </div>
-      <div className='esf-filter'>
+      {/* <div className='esf-filter'>
         <div>Sort By</div>
         <select disabled={true}>
           <option>----</option>
@@ -97,7 +97,7 @@ function SearchFilterRow({searchText, setSearchText}) {
           <option>Alpha Score</option>
           <option>Date</option>
         </select>
-      </div>
+      </div> */}
     </div>
   )
 }
