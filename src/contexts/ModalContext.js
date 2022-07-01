@@ -5,6 +5,7 @@ const ModalContext = createContext();
 function ModalProvider({children}) {
   const [connectPromptModalVisible, setConnectPromptModalVisible] = useState(false)
   const [editProfileModalVisible, setEditProfileModalVisible] = useState(false)
+  const [thankReviewModalVisible, setThankReviewModalVisible] = useState(false)
 
   const showConnectPromptModal = () => {
     setConnectPromptModalVisible(true)
@@ -21,6 +22,15 @@ function ModalProvider({children}) {
   const hideEditProfileModal = () => {
     setEditProfileModalVisible(false)
   }
+
+  const showThankReviewModal = () => {
+    setThankReviewModalVisible(true)
+  }
+  
+  const hideThankReviewModal = () => {
+    setThankReviewModalVisible(false)
+  }
+
   const value = {
     connectPromptModalVisible, 
     showConnectPromptModal, 
@@ -28,6 +38,9 @@ function ModalProvider({children}) {
     editProfileModalVisible,
     showEditProfileModal, 
     hideEditProfileModal,
+    thankReviewModalVisible,
+    showThankReviewModal,
+    hideThankReviewModal
   }
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
 }

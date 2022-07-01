@@ -94,7 +94,7 @@ function LeaderCard({rank, item}) {
           item.username || 'Unnamed'
         }
         <span>{shortenAddress(item.address)}</span>
-        <span>{item.review_count} reviews</span>
+        <span>{item.review_count} votes</span>
       </div>
       <span className='leader-rank'>{rank}</span>
     </Link>

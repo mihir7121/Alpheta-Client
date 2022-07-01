@@ -128,6 +128,19 @@ export const verify = async (account, signature) => {
   return data;
 }
 
+export const checkAuth = async () => {
+  const res = await fetch(`${API_ROOT}/user/check-auth`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    }
+  })
+  const data = await res.json()
+  return data;
+}
+
+
 export const writeReview = async (token, slug, text, score) => {
   const res = await fetch(`${API_ROOT}/project/review`, {
     method: 'POST',

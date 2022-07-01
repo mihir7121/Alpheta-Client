@@ -17,6 +17,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useUser } from '../../contexts/UserContext';
 import CallToAction from '../../components/CallToAction';
 import { useModal } from '../../contexts/ModalContext';
+import ThankReviewModal from '../../components/ThankReviewModal';
 
 function ViewNFT() {
   const params = useParams()
@@ -63,6 +64,7 @@ function ViewNFT() {
   return (
     <div>
       <Navbar></Navbar>
+      <ThankReviewModal></ThankReviewModal>
       <div className='view-nft container'>
         {
           itemData ?
@@ -191,12 +193,25 @@ function ViewNFT() {
 }
 
 function WriteReview({itemData, afterReview, modal}) {
-  const [rating, setRating] = useState(0);
-  const [text, setText] = useState('');
   const auth = useAuth()
 
+  let myReview = null
+
+  for (let i = 0; i < itemData.reviews.length; i++) {
+    if (itemData.reviews[i].user.address === auth.state.address) {
+      myReview = itemData.reviews[i]
+      break
+    }
+  }
+
+  const canEdit = myReview == null || ((new Date() - new Date(myReview.date)) > 1000 * 60 * 10)
+
+  const [rating, setRating] = useState(myReview ? myReview.score : 0);
+  const [text, setText] = useState(myReview ? myReview.text : '');
+  const [submitting, setSubmitting] = useState(false);
+
   const handeTextChange = (event) => {
-    if (checkAuth()) return
+    if (checkAuth() || submitting) return
     setText(event.target.value);
   }
 
@@ -209,29 +224,23 @@ function WriteReview({itemData, afterReview, modal}) {
   }
 
   const updateRating = (rating) => {
-    if (checkAuth()) return
+    if (checkAuth() || !canEdit || submitting) return
     setRating(rating)
   }
 
   const handleSubmitClick = async () => {
-    if (rating === 0) return
+    if (rating === 0 || submitting) return
     if (checkAuth()) return
 
+    setSubmitting(true)
     const result = await writeReview(auth.state.token, itemData.slug, text, rating)
+    setSubmitting(false)
+
     if (result.success) {
-      alert('Review was saved')
       afterReview(result)
+      modal.showThankReviewModal()
     } else {
       alert(result.message)
-    }
-  }
-
-  let myReview = null
-
-  for (let i = 0; i < itemData.reviews.length; i++) {
-    if (itemData.reviews[i].user.address === auth.state.address) {
-      myReview = itemData.reviews[i]
-      break
     }
   }
 
@@ -239,17 +248,17 @@ function WriteReview({itemData, afterReview, modal}) {
     <div className='write-review'>
       <h2>Your Review</h2>
 
-      <RatingSlider rating={myReview ? myReview.score : rating} setRating={updateRating}></RatingSlider>
+      <RatingSlider rating={!canEdit ? myReview.score : rating} setRating={updateRating}></RatingSlider>
 
-      <span className='your-rating'>Your Rating: {myReview ? myReview.score : rating} / 10</span>
+      <span className='your-rating'>Your Rating: {!canEdit ? myReview.score : rating} / 10</span>
 
-      <textarea disabled={myReview != null} placeholder='Your review here...' 
-          value={myReview ? myReview.text : text} onChange={handeTextChange}></textarea>
+      <textarea disabled={!canEdit || submitting} placeholder='Your review here...' 
+          value={!canEdit ? myReview.text : text} onChange={handeTextChange}></textarea>
 
       {
-        !myReview ?
+        canEdit ?
           <div className={'submit-btn' + (rating > 0 ? '' : ' btn-disabled')} onClick={handleSubmitClick}>
-            <FillButton>Submit</FillButton>
+            <FillButton>{myReview ? 'Save Changes' : 'Submit'}</FillButton>
           </div>
         : null
       }

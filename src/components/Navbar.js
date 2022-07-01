@@ -29,7 +29,7 @@ function Navbar({isStatic}) {
   }
 
   const logout = () => {
-    localStorage.removeItem('token')
+    localStorage.clear()
     window.location.reload()
   }
 
@@ -74,7 +74,7 @@ function Navbar({isStatic}) {
         <div></div>
       </div>
 
-      <MobileNav auth={auth}></MobileNav>
+      <MobileNav logout={logout} auth={auth}></MobileNav>
     </div>
   )
 }
@@ -87,7 +87,7 @@ function NavItem(props) {
   )
 }
 
-function MobileNav({auth}) {
+function MobileNav({auth, logout}) {
   return (
     <div className='mnav'>
       {
@@ -102,7 +102,7 @@ function MobileNav({auth}) {
             <span>{shortenAddress(auth.state.address)}</span>
           </div>
 
-          <FillButton small={true}>Logout</FillButton>
+          <FillButton onClick={logout} small={true}>Logout</FillButton>
         </>
       }
 
@@ -111,6 +111,7 @@ function MobileNav({auth}) {
         <Link to='/explore' className='mnav-btn'>Explore</Link>
         <Link to='/leaderboard' className='mnav-btn'>Leaderboard</Link>
         <Link to='/faq' className='mnav-btn'>FAQs</Link>
+        <Link to='/feedback' className='mnav-btn'>Feedback</Link>
         {
           auth.state.isAuthenticated ?
             <Link to='/profile' className='mnav-btn'>Profile</Link>

@@ -35,6 +35,10 @@ function Profile() {
   const toggleFollowing = async (event) => {
     event.stopPropagation()
     event.preventDefault();
+    if (!auth.state.isAuthenticated) {
+      modal.showConnectPromptModal()
+      return true
+    }
     await userContext.follow(userData.address, followed)
   }
 

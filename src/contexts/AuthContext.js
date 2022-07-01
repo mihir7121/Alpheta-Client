@@ -2,7 +2,7 @@ import {createContext, useContext, useEffect, useReducer} from 'react'
 import { ethers } from 'ethers'
 import Web3Modal from 'web3modal'
 import WalletConnectProvider from '@walletconnect/web3-provider'
-import { authenticate, verify } from '../apis/apis.js';
+import { authenticate, checkAuth, verify } from '../apis/apis.js';
 import { useUser } from './UserContext.js';
 
 const AuthContext = createContext();
@@ -73,36 +73,29 @@ function AuthProvider({children}) {
     if (!localStorage.getItem('token'))
       signIn(connection, accounts[0]);
     else {
-      dispatch({
-        type: 'set',
-        data: {
-          isAuthenticated: true,
-          token: localStorage.getItem('token'),
-          address: accounts[0]
-        }
-      });
-
-      userContext.load(accounts[0])
+      connectWalletIfLoggedIn()
     }
   }
 
   const connectWalletIfLoggedIn = async () => {
     if (!localStorage.getItem('token')) return
 
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const accounts = await provider.listAccounts();
+    const authData = await checkAuth()
 
-    if (localStorage.getItem('token')) {
+    if (authData.success) {
       dispatch({
         type: 'set',
         data: {
           isAuthenticated: true,
           token: localStorage.getItem('token'),
-          address: accounts[0]
+          address: authData.user.address,
+          username: authData.user.username
         }
       });
-      userContext.load(accounts[0])
+
+      userContext.load(authData.address)
+    } else {
+      localStorage.removeItem('token')
     }
   }
 

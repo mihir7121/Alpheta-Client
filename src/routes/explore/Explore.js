@@ -18,6 +18,7 @@ function Explore() {
     if (searchText && searchText.trim().length < 3) return
     setCurrentPage(page)
     setExploreData(null)
+    window.scrollTo(0, 0);
 
     const data = await getExplore(page, 20, searchText.trim())
     if (data.success) {
