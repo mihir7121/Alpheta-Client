@@ -170,7 +170,7 @@ function ViewNFT() {
               
               {
                 itemData.reviews.length === 0 ?
-                  <div className='empty-placeholder'>No reviews available</div>
+                  <div className='empty-placeholder'>Be the first one to talk about this.</div>
                 : null
               }
 
