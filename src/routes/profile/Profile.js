@@ -1,6 +1,6 @@
 import './Profile.css'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getUserProfile } from '../../apis/apis'
 import FillButton from '../../components/FillButton'
 import Footer from '../../components/Footer'
@@ -21,6 +21,7 @@ function Profile() {
   const params = useParams()
   const auth = useAuth()
   const modal = useModal()
+  const navigate = useNavigate()
 
   const [selectedTab, setSelectedTab] = useState('activity')
   const [userData, setUserData] = useState(null)
@@ -44,7 +45,13 @@ function Profile() {
 
   useEffect(() => {
     const loadItemDetails = async () => {
-      if (address == null) return
+      if (address == null){
+        if (!auth.state.isAuthenticated && auth.state.verified) {
+          navigate('/')
+        }
+        return
+      }
+
       const data = await getUserProfile(address)
       if (data.success) {
         setUserData(data.profile)
@@ -54,7 +61,7 @@ function Profile() {
     } 
 
     loadItemDetails()
-  }, [address])
+  }, [address, auth.state.verified, auth.state.isAuthenticated])
 
   const getCurrentTabView = () => {
     if (selectedTab === 'favourites') {

@@ -24,6 +24,10 @@ function AuthReducer(state, action) {
   switch (action.type) {
     case 'set':
       return action.data
+    case 'verify':
+      const newState = Object.assign({}, state)
+      newState.verified = true
+      return newState
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
@@ -34,7 +38,8 @@ function AuthProvider({children}) {
   const [state, dispatch] = useReducer(AuthReducer, {
     isAuthenticated: false,
     address: null,
-    token: null
+    token: null,
+    verified: false
   })
 
   const userContext = useUser()
@@ -47,7 +52,11 @@ function AuthProvider({children}) {
     const data = await verify(account, signature);
 
     if (!data.success) {
-      localStorage.setItem('token', null);
+      localStorage.clear();
+      
+      dispatch({
+        'type': 'verify'
+      })
       return alert(data.message)
     }
 
@@ -58,7 +67,8 @@ function AuthProvider({children}) {
       data: {
         isAuthenticated: true,
         token: data.token,
-        address: account
+        address: account,
+        verified: true
       }
     })
 
@@ -78,7 +88,12 @@ function AuthProvider({children}) {
   }
 
   const connectWalletIfLoggedIn = async () => {
-    if (!localStorage.getItem('token')) return
+    if (!localStorage.getItem('token')) {
+      dispatch({
+        type: 'verify'
+      })
+      return
+    }
 
     const authData = await checkAuth()
 
@@ -89,13 +104,17 @@ function AuthProvider({children}) {
           isAuthenticated: true,
           token: localStorage.getItem('token'),
           address: authData.user.address,
-          username: authData.user.username
+          username: authData.user.username,
+          verified: true
         }
       });
 
       userContext.load(authData.address)
     } else {
-      localStorage.removeItem('token')
+      localStorage.clear()
+      dispatch({
+        'type': 'verify'
+      })
     }
   }
 
