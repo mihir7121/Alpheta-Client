@@ -1,4 +1,4 @@
-export const isDebug = false
+export const isDebug = true
 
 export const API_ROOT_DEBUG = 'http://localhost:17655'
 export const API_ROOT_PROD = 'https://alpheta.herokuapp.com'
