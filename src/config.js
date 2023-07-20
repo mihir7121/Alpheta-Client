@@ -1,7 +1,7 @@
 export const isDebug = false
 
 export const API_ROOT_DEBUG = 'http://localhost:17655'
-export const API_ROOT_PROD = 'https://alpheta.herokuapp.com'
+export const API_ROOT_PROD = 'https://rainbow-beignet-7bb10b.netlify.app/'
 
 export const discordLink = 'https://discord.com/invite/uUdCh9dBQB'
 export const instagramLink = 'https://www.instagram.com/alpheta.io/'
