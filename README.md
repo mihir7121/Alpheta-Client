@@ -10,7 +10,7 @@ The primary configuration for the client resides in the `src/config.js` file.
 export const isDebug = false
 
 export const API_ROOT_DEBUG = 'http://localhost:17655'
-export const API_ROOT_PROD = 'https://alpheta-server.netlify.app' || 'https://alpheta-server-production.up.railway.app/'
+export const API_ROOT_PROD = 'https://alpheta-server.adaptable.app'
 
 export const discordLink = 'https://discord.com'
 export const instagramLink = 'https://instagram.com'
